@@ -31,22 +31,81 @@
 // Output: 7
 // Explanation: We find 7 in BST, so ceil
 // of 6 is 7.
-class Tree {
-    // Function to return the ceil of given number in BST.
-    int ans=-1;
-    int findCeil(Node root, int key) {
-        if(root==null){
-            return ans;
+// You are given a BST(Binary Search Tree) with n number of nodes and value x. your task is to find the greatest value node of the BST which is smaller than or equal to x.
+// Note: when x is smaller than the smallest node of BST then returns -1.
+
+// Example:
+
+// Input:
+// n = 7               2
+//                      \
+//                       81
+//                     /     \
+//                  42       87
+//                    \       \
+//                     66      90
+//                    /
+//                  45
+// x = 87
+// Output:
+// 87
+// Explanation:
+// 87 is present in tree so floor will be 87.
+// Example 2:
+
+// Input:
+// n = 4                     6
+//                            \
+//                             8
+//                           /   \
+//                         7       9
+// x = 11
+// Output:
+// 9
+class Solution {
+    public static int findFloor(Node root, int x) {
+        int floor = -1;
+        while (root != null) {
+            if (root.data == x) {
+                return root.data;
+            }
+            if (root.data < x) {
+                floor = root.data;
+                root = root.right;
+            } else {
+                root = root.left;
+            }
         }
-        if(root.data==key)
-            return key;
-        else if(key>root.data){
-            ans=findCeil(root.right,key);
+        return floor;
+    }
+
+    public static int floor(Node root, int x) {
+        if (root == null) {
+            return -1;
         }
-        else {
-            ans=root.data;
-            ans=findCeil(root.left,key);
+        return findFloor(root, x);
+    }
+
+    public static int findCeil(Node root, int x) {
+        int ceil = -1;
+        while (root != null) {
+            if (root.data == x) {
+                return root.data;
+            }
+            if (root.data > x) {
+                ceil = root.data;
+                root = root.left;
+            } else {
+                root = root.right;
+            }
         }
-        return ans;
+        return ceil;
+    }
+
+    public static int ceil(Node root, int x) {
+        if (root == null) {
+            return -1;
+        }
+        return findCeil(root, x);
     }
 }
