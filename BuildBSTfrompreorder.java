@@ -7,8 +7,8 @@ class Solution {
             return null;
         }
         TreeNode root=new TreeNode(preorder[i[0]++]);
-        root.left=buildTree(preorder,root.val,i);
-        root.right=buildTree(preorder,upperbound,i);
+        root.left=buildTree(preorder,root.val,i);   //everything on left will be smaller than root value
+        root.right=buildTree(preorder,upperbound,i);   //everything on right will be greater than root value
         return root;
     }
 }
