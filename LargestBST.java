@@ -9,7 +9,7 @@ class NodeValue{
 class Solution{
     public static NodeValue findAns(Node root){
         if(root==null){
-            return new NodeValue(Integer.MAX_VALUE,Integer.MIN_VALUE,0);
+            return new NodeValue(Integer.MAX_VALUE,Integer.MIN_VALUE,0); // min value =max value and max value=min value to count leaf nodes as they are also a valid bst 
         }
         NodeValue left=findAns(root.left);
         NodeValue right=findAns(root.right);
